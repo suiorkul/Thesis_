@@ -1,0 +1,25 @@
+server:
+  port: 2023
+
+spring:
+  datasource:
+    password: ajt8IvPc2xeAebegwV4kBiBRs6nBd57B
+    username: zisrxbjk
+    url: jdbc:postgresql://mahmud.db.elephantsql.com:5432/zisrxbjk
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+  sql:
+    init:
+      encoding: UTF-8
+app:
+  cors:
+    allowed-origins: http://46.30.41.106:3000, http://localhost:3000
+
+logging:
+  level:
+    root: info

@@ -1,0 +1,53 @@
+<!-- sidebar: style can be found in sidebar.less -->
+<section class="sidebar" th:fragment="sidebar">
+    <!-- Sidebar Menu -->
+    <ul class="sidebar-menu" data-widget="tree">
+        <!-- <li class="header"></li> -->
+        <li class="treeview">
+            <a href="#"><i class="fa fa-user-md" aria-hidden="true"></i> <span> Администрация</span>
+                <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+            </a>
+            <ul class="treeview-menu">
+                <li><a href="/users"><i class="fa fa-circle-o"></i> Колдонуучулардын тизмеси</a></li>
+                <li><a href="/users/add"><i class="fa fa-circle-o"></i> Колдонуучуну каттоо</a></li>
+            </ul>
+        </li>
+        <li class="treeview">
+            <a href="#"><i class="fa fa-user" aria-hidden="true"></i> <span> Пациенттер</span>
+                <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+            </a>
+            <ul class="treeview-menu">
+                <li><a href="/patients"><i class="fa fa-circle-o"></i> Пациенттердин тизмеси</a></li>
+                <li><a href="/patients/add"><i class="fa fa-circle-o"></i> Пациентти каттоо</a></li>
+            </ul>
+        </li>
+        <li class="treeview">
+            <a href="#"><i class="fa fa-id-card" aria-hidden="true"></i> <span> Анализдер</span>
+                <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+            </a>
+            <ul class="treeview-menu">
+                <li><a href="/analyses"><i class="fa fa-circle-o"></i> Анализдердин тизмеси</a></li>
+                <li><a href="/analyses/add"><i class="fa fa-circle-o"></i> Анализди каттоо</a></li>
+            </ul>
+        </li>
+        <li class="treeview">
+            <a href="#"><i class="fa fa-window-restore" aria-hidden="true"></i> <span> Болумдор</span>
+                <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+            </a>
+            <ul class="treeview-menu">
+                <li><a href="/departments"><i class="fa fa-circle-o"></i> Болумдордун тизмеси</a></li>
+                <li><a href="/departments/add"><i class="fa fa-circle-o"></i> Болумду каттоо</a></li>
+            </ul>
+        </li>
+    </ul>
+    <!-- /.sidebar-menu -->
+</section>
+<!-- /.sidebar -->

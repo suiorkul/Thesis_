@@ -1,0 +1,72 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layout">
+<head>
+    <title>Registration Patient</title>
+</head>
+<body>
+<section layout:fragment="header">
+    <h1>Пациентти каттоо</h1>
+    <ol class="breadcrumb">
+        <li><a href="/"><i class="fa fa-dashboard"></i> Куралдар тактасы</a></li>
+        <li class="active">Пациентти каттоо</li>
+    </ol>
+</section>
+<div layout:fragment="content">
+    <div class="box">
+        <div class="box-header with-border">
+            <h3 class="box-title">Пациент</h3>
+            <div class="box-tools pull-right">
+                <a href="/patients" type="button" class="btn btn-box-tool"><i class="fa fa-list-ul"></i></a>
+            </div>
+        </div>
+        <form data-toggle="validator" role="form" th:object="${patient}" th:action="@{/patients/save}" method="post">
+            <div class="box-body">
+                <input type="hidden" th:field="*{id}"/>
+
+                <div class="form-group">
+                    <label for="firstName">Аты</label>
+                    <input type="text" required="true" class="form-control" th:field="*{firstName}" id="firstName" />
+                </div>
+                <div class="form-group">
+                    <label for="lastName">Фамилия</label>
+                    <input type="text" required="true" class="form-control" th:field="*{lastName}" id="lastName" />
+                </div>
+                <div class="form-group">
+                    <label for="patronymic">Атасынын аты</label>
+                    <input type="text" required="true" class="form-control" th:field="*{patronymic}" id="patronymic" />
+                </div>
+                <div class="form-group">
+                    <label for="sex">Жыныс</label>
+                    <select th:field="*{sex}" id="sex" required="true" class="form-control">
+                        <option th:value="'MALE'" th:text="Эркек"></option>
+                        <option th:value="'FEMALE'" th:text="Аял"></option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="email">Почта</label>
+                    <input type="email" required="true" class="form-control" th:field="*{email}" id="email" />
+                </div>
+                <div class="form-group">
+                    <label for="phoneNumber">Телефон номуру</label>
+                    <input type="number" required="true" class="form-control" th:field="*{phoneNumber}" id="phoneNumber" />
+                </div>
+                <div class="form-group">
+                    <label for="dateOfBirth">Туулган күнү</label>
+                    <input type="date" required="true" class="form-control" th:field="*{dateOfBirth}" id="dateOfBirth" />
+                </div>
+                <div class="form-group">
+                    <label for="department">Болум</label>
+                    <select th:name="departmentName" id="department" required="true" class="form-control">
+                        <option th:each="row : ${departments}" th:value="${row.name}" th:text="${row.name}"></option>
+                    </select>
+                </div>
+            </div>
+            <div class="box-footer">
+                <button class="btn btn-primary" type="submit">Сактоо</button>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>
