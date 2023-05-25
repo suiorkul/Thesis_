@@ -54,7 +54,7 @@
         </div>
         <div class="box-footer clearfix">
             <ul class="pagination pagination-sm no-margin pull-right">
-                <li><a href="/patients/1">Алгачкы</a></li>
+                <li><a href="/appointments/1">Алгачкы</a></li>
                 <li th:each="p : ${#numbers.sequence(1, endIndex/beginIndex)}"
                     th:class="${p == currentIndex} ? 'active' : ''">
                     <a th:href="${'/appointments/' + p}" th:text="${p}"></a>

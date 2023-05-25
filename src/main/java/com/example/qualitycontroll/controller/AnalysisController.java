@@ -85,7 +85,7 @@ public class AnalysisController {
         String[] fios = fio.split(" ");
         analysis.setPatient(patientRepository.getPatientByFirstNameAndLastNameAndPatronymic(fios[0], fios[1], fios[2]));
         analysis.setDepartmentDocument(storageService.uploadFile(file1));
-        analysis.setDocumentFromTurkey(storageService.uploadFile(file2));
+        analysis.setDoctorDocument(storageService.uploadFile(file2));
         analysisService.save(analysis);
         ra.addFlashAttribute("successFlash", "User successfully saved");
         return searchController.search(model, fios[0], fios[1], fios[2]);
