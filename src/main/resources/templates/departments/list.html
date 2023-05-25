@@ -3,6 +3,7 @@
       layout:decorate="layout">
 <head>
     <title>Болумдор</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
 <body>
 <section layout:fragment="header">
@@ -17,7 +18,7 @@
         <div class="box-header with-border">
             <h3 class="box-title">Тизмеси</h3>
             <div class="box-tools pull-right">
-                <a href="/departments/add" type="button" class="btn btn-box-tool"><i class="fa fa-plus"></i></a>
+                <a href="/departments/add" type="button" class="btn btn-box-tool"><i class="fa fa-plus fa-2x"></i></a>
                 <br clear="all" />
             </div>
         </div>
@@ -34,8 +35,8 @@
                     <td th:text="${row.name}"></td>
                     <td th:text="${row.description}"></td>
                     <td>
-                        <a th:href="${'/departments/edit/' + row.id}">Озгортуу</a> |
-                        <a th:href="${'/departments/delete/' + row.id}">Очуруу</a>
+                        <a class="edit-button" th:href="${'/departments/edit/' + row.id}">Озгортуу</a>
+                        <a class="delete-button" th:if="${role} == 'ADMIN'" th:href="${'/departments/delete/' + row.id}">Очуруу</a>
                     </td>
                 </tr>
             </table>

@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 @RequiredArgsConstructor
-@PreAuthorize("hasAuthority('ADMIN')")
 public class DashboardController {
     private final ModelConfig modelConfig;
 

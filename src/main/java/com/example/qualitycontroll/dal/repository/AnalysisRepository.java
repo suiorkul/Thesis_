@@ -10,4 +10,5 @@ import java.util.List;
 @Repository
 public interface AnalysisRepository extends JpaRepository<Analysis, Long> {
     List<Analysis> findAllByPatient(Patient patient);
+    void deleteAllByPatient(Patient patient);
 }

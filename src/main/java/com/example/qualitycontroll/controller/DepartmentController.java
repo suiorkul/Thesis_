@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
-@PreAuthorize("hasAuthority('ADMIN')")
 @RequestMapping("departments")
 @RequiredArgsConstructor
 public class DepartmentController {

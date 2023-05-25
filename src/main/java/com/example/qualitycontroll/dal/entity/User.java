@@ -38,7 +38,7 @@ public class User extends AbstractModel<Long> implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Collections.singletonList(new SimpleGrantedAuthority(role.toString()));
+        return Collections.singleton(new SimpleGrantedAuthority(role.toString()));
     }
 
     @Override

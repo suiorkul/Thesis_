@@ -1,0 +1,24 @@
+button {
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+}
+.edit-button {
+    border: 1px solid orange;
+    border-radius: 3px;
+    background-color: #f1ae3f;
+    padding: 3px 5px;
+    color: white;
+}
+
+.delete-button {
+    border: 1px solid red;
+    border-radius: 3px;
+    background-color: #f13f3f;
+    padding: 3px 5px;
+    color: white;
+}

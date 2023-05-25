@@ -1,5 +1,7 @@
 package com.example.qualitycontroll.dal.entity;
 
+import com.example.qualitycontroll.dal.enums.BloodType;
+import com.example.qualitycontroll.dal.enums.MaterialStatus;
 import com.example.qualitycontroll.dal.enums.Sex;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -35,5 +37,23 @@ public class Patient extends AbstractModel<Long>{
     @ManyToOne()
             @JoinColumn(name = "department", referencedColumnName = "id")
     Department department;
+
+    @ManyToOne
+            @JoinColumn(name = "doctor", referencedColumnName = "id")
+    User doctor;
+
+    @Enumerated(EnumType.STRING)
+    BloodType bloodType;
+
+    @Enumerated(EnumType.STRING)
+    MaterialStatus materialStatus;
+
+    String cnic;
+
+    String city;
+
+    String deceased;
+
+    String address;
 
 }

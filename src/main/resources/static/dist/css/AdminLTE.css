@@ -10,6 +10,10 @@
  * Core: General Layout Style
  * -------------------------
  */
+.edit-button {
+  border: 1px solid black;
+}
+
 html,
 body {
   height: 100%;

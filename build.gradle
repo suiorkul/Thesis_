@@ -5,7 +5,7 @@ plugins {
 }
 
 group = 'com.example'
-version = '0.1'
+version = '0.3'
 sourceCompatibility = '11'
 
 repositories {
@@ -27,6 +27,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect:3.1.0'
+	implementation 'org.projectlombok:lombok:1.18.22'
 	runtimeOnly 'org.postgresql:postgresql'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
@@ -36,6 +37,9 @@ dependencies {
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 	implementation 'commons-io:commons-io:2.11.0'
+	implementation 'com.amazonaws:aws-java-sdk:1.12.420'
+	implementation 'org.springframework.cloud:spring-cloud-starter-aws:2.2.6.RELEASE'
+	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
 }
 
 tasks.named('test') {

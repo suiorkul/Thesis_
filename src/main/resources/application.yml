@@ -1,11 +1,28 @@
 server:
   port: 2023
 
+cloud:
+  aws:
+    credentials:
+      access-key: AKIAU5JHNIYVZI6YZ55G
+      secret-key: 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
+    region:
+      static: us-east-2
+    stack:
+      auto: false
+
+application:
+  bucket:
+    name: clinic-storage
+
 spring:
+  servlet:
+    multipart:
+      max-file-size: 10MB
   datasource:
-    password: ajt8IvPc2xeAebegwV4kBiBRs6nBd57B
-    username: zisrxbjk
-    url: jdbc:postgresql://mahmud.db.elephantsql.com:5432/zisrxbjk
+    password: ijfOdip3lqiNT103gdZYAg_EWkplOaIG
+    username: vwthsrbp
+    url: jdbc:postgresql://floppy.db.elephantsql.com:5432/vwthsrbp
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:

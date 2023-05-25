@@ -20,9 +20,13 @@ public class Analysis extends AbstractModel<Long>{
             @JoinColumn(name = "patient", referencedColumnName = "id")
     Patient patient;
 
-    File departmentDocument;
+    @OneToOne(orphanRemoval = true)
+    @JoinColumn(referencedColumnName = "id")
+    AwsDocument departmentDocument;
 
-    File documentFromTurkey;
+    @OneToOne(orphanRemoval = true)
+    @JoinColumn(referencedColumnName = "id")
+    AwsDocument documentFromTurkey;
 
     @Enumerated(EnumType.STRING)
     Status status;

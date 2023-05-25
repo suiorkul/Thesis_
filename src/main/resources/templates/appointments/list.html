@@ -1,0 +1,68 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout">
+<head>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <title>Users</title>
+</head>
+<body>
+<section layout:fragment="header">
+    <h1>Дайындоо</h1>
+    <ol class="breadcrumb">
+        <li><a href="/"><i class="fa fa-dashboard"></i> Куралдар тактасы</a></li>
+        <li class="active">Дайындоо</li>
+    </ol>
+</section>
+<div layout:fragment="content">
+    <div class="box">
+        <div class="box-header with-border">
+            <h3 class="box-title">Тизмеси</h3>
+            <div class="box-tools pull-right">
+                <a href="/patients/add" type="button" class="btn btn-box-tool"><i class="fa fa-plus fa-2x"></i></a>
+                <br clear="all"/>
+            </div>
+        </div>
+        <div class="box-body no-padding">
+            <table class="table table-hover">
+                <tr>
+                    <th>ID</th>
+                    <th>Пациент</th>
+                    <th>Телефон номуру</th>
+                    <th>Доктур</th>
+                    <th>Убакыт</th>
+                    <th>Дата</th>
+                    <th>Дареги</th>
+                    <th>Диагноз</th>
+                </tr>
+                <tr th:each="row : ${list}">
+                    <form id="form" th:action="@{/search-analyses}">
+                        <td><button th:text="${row.id}"></button></td>
+                        <td><button th:text="${row.patient.firstName} + ' ' + ${row.patient.lastName}"></button><input type="hidden" name="firstName" th:value="${row.firstName}"></td>
+                        <td><button th:text="${row.doctor.firstname} + ' ' + ${row.doctor.lastname}"></button><input type="hidden" name="lastName" th:value="${row.lastName}"></td>
+                        <td><button th:text="${row.phoneNumber}"></button><input type="hidden" name="patronymic" th:value="${row.patronymic}"></td>
+                        <td><button th:text="${row.time}"></button></td>
+                        <td><button th:text="${row.date}"></button></td>
+                        <td><button th:text="${row.address}"></button></td>
+                        <td><button th:text="${row.deceased}"></button></td>
+                        <td>
+                            <a class="edit-button" th:href="${'/appointments/edit/' + row.id}">Озгортуу</a>
+                            <a class="delete-button" th:if="${role} == 'ADMIN'" th:href="${'/appointments/delete/' + row.id}">Очуруу</a>
+                        </td>
+                    </form>
+                </tr>
+            </table>
+        </div>
+        <div class="box-footer clearfix">
+            <ul class="pagination pagination-sm no-margin pull-right">
+                <li><a href="/patients/1">Алгачкы</a></li>
+                <li th:each="p : ${#numbers.sequence(1, endIndex/beginIndex)}"
+                    th:class="${p == currentIndex} ? 'active' : ''">
+                    <a th:href="${'/appointments/' + p}" th:text="${p}"></a>
+                </li>
+                <li><a th:href="${'/appointments/' + endIndex}">Акыркы</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+</body>
+</html>

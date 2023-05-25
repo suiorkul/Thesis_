@@ -8,6 +8,7 @@ import com.example.qualitycontroll.dal.repository.DepartmentRepository;
 import com.example.qualitycontroll.dal.repository.PatientRepository;
 import com.example.qualitycontroll.service.AnalysisService;
 import com.example.qualitycontroll.service.PatientService;
+import com.example.qualitycontroll.service.StorageService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.data.domain.Page;
@@ -17,15 +18,16 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
 import java.io.IOException;
 import java.util.Objects;
 
 @Controller
-@PreAuthorize("hasAuthority('ADMIN')")
 @RequestMapping("analyses")
 @RequiredArgsConstructor
 public class AnalysisController {
@@ -33,6 +35,9 @@ public class AnalysisController {
     private final ModelConfig modelConfig;
     private final AnalysisService analysisService;
     private final PatientRepository patientRepository;
+    private final AnalysisRepository analysisRepository;
+    private final SearchController searchController;
+    private final StorageService storageService;
 
     @GetMapping
     public String index() {
@@ -75,18 +80,28 @@ public class AnalysisController {
     }
 
     @PostMapping(value = "/save")
-    public String save(Analysis analysis, final RedirectAttributes ra, @RequestParam String fio) {
+    public String save(Model model, Analysis analysis, final RedirectAttributes ra, @RequestParam String fio,
+                       @RequestParam MultipartFile file1, @RequestParam MultipartFile file2) {
         String[] fios = fio.split(" ");
         analysis.setPatient(patientRepository.getPatientByFirstNameAndLastNameAndPatronymic(fios[0], fios[1], fios[2]));
+        analysis.setDepartmentDocument(storageService.uploadFile(file1));
+        analysis.setDocumentFromTurkey(storageService.uploadFile(file2));
         analysisService.save(analysis);
         ra.addFlashAttribute("successFlash", "User successfully saved");
-        return "redirect:/analyses";
+        return searchController.search(model, fios[0], fios[1], fios[2]);
     }
 
     @GetMapping("/delete/{id}")
-    public String delete(@PathVariable Long id) {
+    public String delete(@PathVariable Long id, Model model) {
+        Patient patient = analysisRepository.findById(id).orElseThrow().getPatient();
         analysisService.delete(id);
-        return "redirect:/analyses";
+        model.addAttribute("firstName", patient.getFirstName());
+        model.addAttribute("lastName", patient.getLastName());
+        model.addAttribute("patronymic", patient.getPatronymic());
+        model.addAttribute("list", analysisRepository
+                .findAllByPatient(patientRepository
+                        .findByFirstNameAndLastNameAndPatronymic(patient.getFirstName(), patient.getLastName(), patient.getPatronymic())));
+        return "analyses/search";
     }
 
 }

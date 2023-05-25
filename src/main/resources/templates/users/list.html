@@ -3,6 +3,7 @@
       layout:decorate="layout">
 <head>
     <title>Users</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
 <body>
 <section layout:fragment="header">
@@ -17,7 +18,7 @@
         <div class="box-header with-border">
             <h3 class="box-title">Тизмеси</h3>
             <div class="box-tools pull-right">
-                <a href="/users/add" type="button" class="btn btn-box-tool"><i class="fa fa-plus"></i></a>
+                <a href="/users/add" type="button" class="btn btn-box-tool"><i class="fa fa-plus fa-2x"></i></a>
                 <br clear="all" />
             </div>
         </div>
@@ -42,8 +43,8 @@
                     <td th:text="${row.created}"></td>
                     <td th:text="${row.role}"></td>
                     <td>
-                        <a th:href="${'/users/edit/' + row.id}">Озгортуу</a> |
-                        <a th:href="${'/users/delete/' + row.id}">Очуруу</a>
+                        <a class="edit-button" th:href="${'/users/edit/' + row.id}">Озгортуу</a>
+                        <a class="delete-button" th:href="${'/users/delete/' + row.id}">Очуруу</a>
                     </td>
                 </tr>
             </table>

@@ -22,4 +22,8 @@ public interface PatientRepository extends JpaRepository<Patient, Long> {
     List<Patient> findAllByFirstName(@Param("name") String name);
 
     List<Patient> findAllByDepartmentOrderByCreatedDesc(Department department);
+
+    Patient findByFirstNameAndLastNameAndPatronymic(String firstName, String lastName, String patronymic);
+
+    Patient getPatientById(Long id);
 }

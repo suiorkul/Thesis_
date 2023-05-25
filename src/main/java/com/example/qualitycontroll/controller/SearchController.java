@@ -18,7 +18,6 @@ import java.util.List;
 import java.util.Objects;
 
 @Controller
-@PreAuthorize("hasAuthority('ADMIN')")
 @RequestMapping("")
 @RequiredArgsConstructor
 public class SearchController {
@@ -38,11 +37,15 @@ public class SearchController {
     }
 
     @GetMapping("/search-analyses")
-    public String search(Model model , @RequestParam String patient) {
-        String[] fios = patient.split(" ");
+    public String search(Model model , @RequestParam String firstName,
+                         @RequestParam String lastName, @RequestParam String patronymic) {
         modelConfig.configCommonAttributes(model);
-        model.addAttribute("patients", patientRepository.findAll());
-        model.addAttribute("list", analysisRepository.findAllByPatient(patientRepository.getPatientByFirstNameAndLastNameAndPatronymic(fios[0], fios[1], fios[2])));
+        model.addAttribute("firstName", firstName);
+        model.addAttribute("lastName", lastName);
+        model.addAttribute("patronymic", patronymic);
+        model.addAttribute("list", analysisRepository
+                .findAllByPatient(patientRepository
+                        .findByFirstNameAndLastNameAndPatronymic(firstName, lastName, patronymic)));
         return "analyses/search";
     }
 }
