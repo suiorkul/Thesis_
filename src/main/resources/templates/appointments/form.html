@@ -46,7 +46,7 @@
                     <label for="patientId">Пациент</label>
                     <select th:name="patientId" id="patientId" required="true" class="form-control">
                         <option th:each="row : ${patients}" th:value="${row.id}"
-                                th:text="${row.getFirstName()} + ' ' + ${row.getLastName()}"></option>
+                                th:text="${row.getFirstname()} + ' ' + ${row.getLastname()}"></option>
                     </select>
                 </div>
                 <div class="col-md-6">

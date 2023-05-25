@@ -18,7 +18,7 @@
         <div class="box-header with-border">
             <h3 class="box-title">Тизмеси</h3>
             <div class="box-tools pull-right">
-                <a href="/appointments/add" type="button" class="btn btn-box-tool"><i class="fa fa-plus fa-2x"></i></a>
+                <a th:if="${role} == 'ADMIN' or ${role} == 'DOCTOR'" href="/appointments/add" type="button" class="btn btn-box-tool"><i class="fa fa-plus fa-2x"></i></a>
                 <br clear="all"/>
             </div>
         </div>
@@ -37,7 +37,7 @@
                 <tr th:each="row : ${list}">
                     <form id="form" th:action="@{/search-analyses}">
                         <td th:text="${row.id}"></td>
-                        <td th:text="${row.patient.getFirstName()} + ' ' + ${row.patient.getLastName()}"></td>
+                        <td th:text="${row.patient.getFirstname()} + ' ' + ${row.patient.getLastname()}"></td>
                         <td th:text="${row.doctor.getFirstname()} + ' ' + ${row.doctor.getLastname()}"></td>
                         <td th:text="${row.phoneNumber}"></td>
                         <td th:text="${row.time}"></td>
@@ -45,7 +45,7 @@
                         <td th:text="${row.address}"></td>
                         <td th:text="${row.deceased}"></td>
                         <td>
-                            <a class="edit-button" th:href="${'/appointments/edit/' + row.id}">Озгортуу</a>
+                            <a class="edit-button" th:if="${role} == 'ADMIN' or ${role} == 'DOCTOR'" th:href="${'/appointments/edit/' + row.id}">Озгортуу</a>
                             <a class="delete-button" th:if="${role} == 'ADMIN'" th:href="${'/appointments/delete/' + row.id}">Очуруу</a>
                         </td>
                     </form>

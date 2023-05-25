@@ -17,6 +17,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletRequest;
+
 @Controller
 @RequestMapping("appointments")
 @RequiredArgsConstructor
@@ -25,6 +27,8 @@ public class AppointmentController {
     private final ModelConfig modelConfig;
     private final PatientRepository patientRepository;
     private final AppointmentService appointmentService;
+
+    private final HttpServletRequest request;
     private final UserRepository userRepository;
 
     @GetMapping
@@ -35,7 +39,7 @@ public class AppointmentController {
     @GetMapping(value = "/{pageNumber}")
     public String list(@PathVariable Integer pageNumber, Model model) {
         modelConfig.configCommonAttributes(model);
-        Page<Appointment> page = appointmentService.getList(pageNumber);
+        Page<Appointment> page = appointmentService.getByPatientOrDoctor(request.getUserPrincipal().getName(), pageNumber);
         int current = page.getNumber() + 1;
         int begin = Math.max(1, current - 5);
         int end = Math.min(begin + 10, page.getTotalPages());
@@ -51,7 +55,7 @@ public class AppointmentController {
         modelConfig.configCommonAttributes(model);
         model.addAttribute("appointment", new Appointment());
         model.addAttribute("doctors", userRepository.findAllByRoleIs(Role.DOCTOR));
-        model.addAttribute("patients", patientRepository.findAll());
+        model.addAttribute("patients", userRepository.findAllByRoleIs(Role.PATIENT));
         return "appointments/form";
 
     }
@@ -61,7 +65,7 @@ public class AppointmentController {
         modelConfig.configCommonAttributes(model);
         model.addAttribute("appointment", appointmentService.get(id));
         model.addAttribute("doctors", userRepository.findAllByRoleIs(Role.DOCTOR));
-        model.addAttribute("patients", patientRepository.findAll());
+        model.addAttribute("patients", userRepository.findAllByRoleIs(Role.PATIENT));
         return "appointments/form";
     }
 
@@ -69,7 +73,7 @@ public class AppointmentController {
     public String save(Appointment appointment, final RedirectAttributes ra,
                        @RequestParam Long patientId,
                        @RequestParam Long doctorId) {
-        appointment.setPatient(patientRepository.getPatientById(patientId));
+        appointment.setPatient(userRepository.findById(patientId).get());
         appointment.setDoctor(userRepository.findById(doctorId).get());
         appointmentService.save(appointment);
         ra.addFlashAttribute("successFlash", "User successfully saved");

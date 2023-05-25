@@ -39,5 +39,5 @@ VALUES
 INSERT INTO public.users (created, updated, active, email, firstname, lastname, password, role, username)
 VALUES
     (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, true, 'doctor1@example.com', 'John', 'Doe', 'password1', 'DOCTOR', 'johndoe'),
-    (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, true, 'doctor2@example.com', 'Jane', 'Smith', 'password2', 'DOCTOR', 'janesmith'),
-    (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, true, 'doctor3@example.com', 'Alex', 'Johnson', 'password3', 'DOCTOR', 'alexjohnson');
+    (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, true, 'doctor2@example.com', 'Jane', 'Smith', 'password2', 'PATIENT', 'janesmith'),
+    (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, true, 'doctor3@example.com', 'Alex', 'Johnson', 'password3', 'PATIENT', 'alexjohnson');

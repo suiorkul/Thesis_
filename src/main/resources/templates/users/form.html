@@ -47,9 +47,8 @@
                 <div class="form-group">
                     <label for="role">Роль</label>
                     <select th:field="*{role}" id="role" required="true" class="form-control">
-                        <option th:value="'ADMIN'" th:text="Админ"></option>
-                        <option th:value="'DOCTOR'" th:text="Доктур"></option>
-                        <option th:value="'RECEPTIONIST'" th:text="Рецепционист"></option>
+                        <option th:each="role : ${T(com.example.qualitycontroll.dal.enums.Role).values()}" th:value="${role}"
+                                th:text="${role.label}"></option>
                     </select>
                 </div>
             </div>

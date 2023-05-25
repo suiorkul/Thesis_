@@ -19,7 +19,7 @@ public class Appointment extends AbstractModel<Long>{
 
     @ManyToOne()
             @JoinColumn(name = "patient", referencedColumnName = "id")
-    Patient patient;
+    User patient;
 
     @ManyToOne()
             @JoinColumn(name = "doctor", referencedColumnName = "id")
