@@ -51,8 +51,6 @@
                     <th>Телефон номуру</th>
                     <th>Туулган күнү</th>
                     <th>Болум</th>
-                    <th>Оорукананын аты</th>
-                    <th>Катталган датасы</th>
                     <th>Озгортуу</th>
                 </tr>
                 <tr th:each="row : ${list}">
@@ -66,8 +64,6 @@
                         <td><button th:text="${row.phoneNumber}" onclick="myFunction()"></button></td>
                         <td><button th:text="${row.dateOfBirth}" onclick="myFunction()"></button></td>
                         <td><button th:text="${row.department.name}" onclick="myFunction()"></button></td>
-                        <td><button th:text="${row.clinicName}" onclick="myFunction()"></button></td>
-                        <td><button th:text="${row.created}" onclick="myFunction()"></button></td>
                         <td>
                             <a class="edit-button" th:href="${'/patients/edit/' + row.id}">Озгортуу</a>
                             <a class="delete-button" th:if="${role} == 'ADMIN'" th:href="${'/patients/delete/' + row.id}">Очуруу</a>

@@ -4,15 +4,19 @@
     <ul class="sidebar-menu" data-widget="tree">
         <!-- <li class="header"></li> -->
         <li>
-            <a href="/patients" style="display: flex; column-gap: 5%"><i class="fa fa-user fa-2x" aria-hidden="true"></i> <span style="font-size: 18px; color: white"> Пациенттер</span>
+            <a href="/patients" style="display: flex; column-gap: 5%"><i class="fa fa-user fa" aria-hidden="true"></i> <span> Пациенттер</span>
             </a>
         </li>
         <li>
-            <a href="/departments" style="display: flex; column-gap: 8%"><i class="fa fa-window-maximize fa-2x" aria-hidden="true"></i> <span style="font-size: 18px; color: #3cad3c"> Болумдор</span>
+            <a href="/appointments" style="display: flex; column-gap: 5%"><i class="fa fa-calendar-check-o fa" aria-hidden="true"></i> <span> Дайындоолор</span>
+            </a>
+        </li>
+        <li>
+            <a href="/departments" style="display: flex; column-gap: 8%"><i class="fa fa-window-maximize fa" aria-hidden="true"></i> <span> Болумдор</span>
             </a>
         </li>
         <li th:if="${role} == 'ADMIN'">
-            <a href="/users" style="display: flex; column-gap: 5%"><i class="fa fa-user-md fa-2x" aria-hidden="true"></i> <span style="font-size: 18px; color: orange"> Администрация</span>
+            <a href="/users" style="display: flex; column-gap: 5%"><i class="fa fa-user-md fa" aria-hidden="true"></i> <span> Администрация</span>
             </a>
         </li>
     </ul>

@@ -29,3 +29,15 @@ values ('2023-01-20 14:38:42.000000',
 insert into departments (name, description) values ('Уролог', 'Уролог');
 insert into departments (name, description) values ('Кардиолог', 'Кардиолог');
 insert into departments (name, description) values ('Нефролог', 'Нефролог');
+
+INSERT INTO public.patients (created, updated, date_of_birth, email, first_name, last_name, patronymic, phone_number, sex, department)
+VALUES
+    (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '1990-01-01', 'john@example.com', 'John', 'Doe', 'Smith', '123456789', 'MALE', 1),
+    (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '1995-05-15', 'jane@example.com', 'Jane', 'Smith', 'Doe', '987654321', 'FEMALE', 2),
+    (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '1988-12-25', 'alex@example.com', 'Alex', 'Johnson', '', '555555555', 'MALE', 1);
+
+INSERT INTO public.users (created, updated, active, email, firstname, lastname, password, role, username)
+VALUES
+    (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, true, 'doctor1@example.com', 'John', 'Doe', 'password1', 'DOCTOR', 'johndoe'),
+    (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, true, 'doctor2@example.com', 'Jane', 'Smith', 'password2', 'DOCTOR', 'janesmith'),
+    (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, true, 'doctor3@example.com', 'Alex', 'Johnson', 'password3', 'DOCTOR', 'alexjohnson');
