@@ -7,6 +7,7 @@ import com.example.qualitycontroll.dal.repository.AnalysisRepository;
 import com.example.qualitycontroll.dal.repository.DepartmentRepository;
 import com.example.qualitycontroll.dal.repository.PatientRepository;
 import com.example.qualitycontroll.service.AnalysisService;
+import com.example.qualitycontroll.service.MailService;
 import com.example.qualitycontroll.service.PatientService;
 import com.example.qualitycontroll.service.StorageService;
 import lombok.RequiredArgsConstructor;
@@ -38,6 +39,7 @@ public class AnalysisController {
     private final AnalysisRepository analysisRepository;
     private final SearchController searchController;
     private final StorageService storageService;
+    private final MailService mailService;
 
     @GetMapping
     public String index() {
@@ -85,6 +87,7 @@ public class AnalysisController {
         String[] fios = fio.split(" ");
         analysis.setPatient(patientRepository.getPatientByFirstNameAndLastNameAndPatronymic(fios[0], fios[1], fios[2]));
         analysis.setDepartmentDocument(storageService.uploadFile(file1));
+        mailService.sendAnalysis(analysis);
         analysisService.save(analysis);
         ra.addFlashAttribute("successFlash", "User successfully saved");
         return searchController.search(model, fios[0], fios[1], fios[2]);

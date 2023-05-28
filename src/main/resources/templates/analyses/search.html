@@ -29,6 +29,7 @@
                     <th>ID</th>
                     <th>Катталган датасы</th>
                     <th>Пациент</th>
+                    <th>Ачыктамасы</th>
                     <th>Анализдер</th>
                     <th>Даарылануу</th>
                     <th>Статус</th>
@@ -38,6 +39,7 @@
                     <td th:text="${row.id}"></td>
                     <td th:text="${row.created}"></td>
                     <td th:text="${row.patient.firstName} + ' ' + ${row.patient.lastName} + ' ' + ${row.patient.patronymic}"></td>
+                    <td th:text="${row.description}"></td>
                     <td><a target="_blank" th:text="${row.getDepartmentDocument().originalFileName()}" th:href="${row.getDepartmentDocument().fileUrl()}"><i class="fa fa-download" aria-hidden="true"></i></a></td>
                     <td th:text="${row.treatment}"></td>
                     <td th:text="${row.status.getLabel()}"></td>

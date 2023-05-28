@@ -16,6 +16,7 @@ import java.util.Collections;
 @Getter
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class User extends AbstractModel<Long> implements UserDetails {
@@ -27,6 +28,8 @@ public class User extends AbstractModel<Long> implements UserDetails {
     String lastname;
 
     String email;
+
+    String phoneNumber;
 
     String password;
 

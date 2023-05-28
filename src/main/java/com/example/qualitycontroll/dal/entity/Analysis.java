@@ -20,6 +20,8 @@ public class Analysis extends AbstractModel<Long>{
             @JoinColumn(name = "patient", referencedColumnName = "id")
     Patient patient;
 
+    String description;
+
     @OneToOne(orphanRemoval = true)
     @JoinColumn(referencedColumnName = "id")
     AwsDocument departmentDocument;

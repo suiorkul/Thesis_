@@ -9,6 +9,7 @@ import com.example.qualitycontroll.dal.repository.DepartmentRepository;
 import com.example.qualitycontroll.dal.repository.PatientRepository;
 import com.example.qualitycontroll.dal.repository.UserRepository;
 import com.example.qualitycontroll.service.AppointmentService;
+import com.example.qualitycontroll.service.MailService;
 import com.example.qualitycontroll.service.PatientService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -25,7 +26,7 @@ import javax.servlet.http.HttpServletRequest;
 public class AppointmentController {
 
     private final ModelConfig modelConfig;
-    private final PatientRepository patientRepository;
+    private final MailService mailService;
     private final AppointmentService appointmentService;
 
     private final HttpServletRequest request;
@@ -75,6 +76,7 @@ public class AppointmentController {
                        @RequestParam Long doctorId) {
         appointment.setPatient(userRepository.findById(patientId).get());
         appointment.setDoctor(userRepository.findById(doctorId).get());
+        mailService.sendAppointmentSuccess(appointment);
         appointmentService.save(appointment);
         ra.addFlashAttribute("successFlash", "User successfully saved");
         return "redirect:/appointments";
@@ -82,6 +84,7 @@ public class AppointmentController {
 
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable Long id) {
+        mailService.sendAppointmentCanceled(appointmentService.get(id));
         appointmentService.delete(id);
         return "redirect:/appointments";
     }

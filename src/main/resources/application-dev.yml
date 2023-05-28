@@ -51,6 +51,15 @@ spring:
           starttls:
             enable: true
 
+whatsapp:
+  instance:
+    chat-url: https://api.ultramsg.com/instance48702/messages/chat
+    document-url: https://api.ultramsg.com/instance48702/messages/document
+    token: ajyfz1gx4so5o4xt
+
+link:
+  url: 'http://localhost:2023/login'
+
 logging:
   level:
     root: info
