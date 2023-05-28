@@ -17,7 +17,7 @@ public class DataSourceConfig {
     public DataSourceInitializer dataSourceInitializer(@Qualifier("dataSource") final DataSource dataSource) {
         ResourceDatabasePopulator resourceDatabasePopulator = new ResourceDatabasePopulator();
         resourceDatabasePopulator.setSqlScriptEncoding(Encoding.DEFAULT_CHARSET.name());
-        resourceDatabasePopulator.addScript(new ClassPathResource("V2_init.sql"));
+       // resourceDatabasePopulator.addScript(new ClassPathResource("V2_init.sql"));
         DataSourceInitializer dataSourceInitializer = new DataSourceInitializer();
         dataSourceInitializer.setDataSource(dataSource);
         dataSourceInitializer.setDatabasePopulator(resourceDatabasePopulator);

@@ -24,9 +24,7 @@ public class Analysis extends AbstractModel<Long>{
     @JoinColumn(referencedColumnName = "id")
     AwsDocument departmentDocument;
 
-    @OneToOne(orphanRemoval = true)
-    @JoinColumn(referencedColumnName = "id")
-    AwsDocument doctorDocument;
+    String treatment;
 
     @Enumerated(EnumType.STRING)
     Status status;

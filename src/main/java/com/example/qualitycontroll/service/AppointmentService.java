@@ -3,6 +3,7 @@ package com.example.qualitycontroll.service;
 import com.example.qualitycontroll.dal.entity.Appointment;
 import com.example.qualitycontroll.dal.entity.Patient;
 import com.example.qualitycontroll.dal.entity.User;
+import com.example.qualitycontroll.dal.enums.Role;
 import com.example.qualitycontroll.dal.repository.AppointmentRepository;
 import com.example.qualitycontroll.dal.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -26,6 +27,9 @@ public class AppointmentService extends AbstractService<Appointment, Long>{
                 PageRequest.of(pageNumber - 1, PAGE_SIZE, Sort.Direction.DESC, "created");
 
         User user = userRepository.findByUsername(username);
+        if (user.getRole().equals(Role.ADMIN) || user.getRole().equals(Role.RECEPTIONIST)) {
+            return appointmentRepository.findAll(pageRequest);
+        }
 
         return appointmentRepository.getAppointmentsByPatientOrDoctor(user, user, pageRequest);
     }

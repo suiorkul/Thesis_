@@ -29,8 +29,8 @@
                     <th>ID</th>
                     <th>Катталган датасы</th>
                     <th>Пациент</th>
-                    <th>Болумудун докумени</th>
-                    <th>Түркиядан келген документ</th>
+                    <th>Анализдер</th>
+                    <th>Даарылануу</th>
                     <th>Статус</th>
                     <th>Озгортуу</th>
                 </tr>
@@ -39,7 +39,7 @@
                     <td th:text="${row.created}"></td>
                     <td th:text="${row.patient.firstName} + ' ' + ${row.patient.lastName} + ' ' + ${row.patient.patronymic}"></td>
                     <td><a target="_blank" th:text="${row.getDepartmentDocument().originalFileName()}" th:href="${row.getDepartmentDocument().fileUrl()}"><i class="fa fa-download" aria-hidden="true"></i></a></td>
-                    <td><a target="_blank" th:text="${row.getDocumentFromTurkey().originalFileName()}" th:href="${row.getDocumentFromTurkey().fileUrl()}"><i class="fa fa-download" aria-hidden="true"></i></a></td>
+                    <td th:text="${row.treatment}"></td>
                     <td th:text="${row.status.getLabel()}"></td>
                     <td>
                         <a class="edit-button" th:href="${'/analyses/edit/' + row.id}">Озгортуу</a>

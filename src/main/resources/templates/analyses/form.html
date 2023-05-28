@@ -31,12 +31,12 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="departmentDocument"> докумени</label>
+                    <label for="departmentDocument"> Анализдер</label>
                     <input type="file" class="form-control" name="file1" id="departmentDocument" />
                 </div>
                 <div class="form-group">
-                    <label for="documentFromTurkey">Түркиядан келген документ</label>
-                    <input type="file" class="form-control" name="file2" id="documentFromTurkey" />
+                    <label for="treatment"> Дарылануу</label>
+                    <textarea class="form-control" th:field="*{treatment}" id="treatment" />
                 </div>
                 <div class="form-group">
                     <label for="status">Статус</label>

@@ -81,11 +81,10 @@ public class AnalysisController {
 
     @PostMapping(value = "/save")
     public String save(Model model, Analysis analysis, final RedirectAttributes ra, @RequestParam String fio,
-                       @RequestParam MultipartFile file1, @RequestParam MultipartFile file2) {
+                       @RequestParam MultipartFile file1) {
         String[] fios = fio.split(" ");
         analysis.setPatient(patientRepository.getPatientByFirstNameAndLastNameAndPatronymic(fios[0], fios[1], fios[2]));
         analysis.setDepartmentDocument(storageService.uploadFile(file1));
-        analysis.setDoctorDocument(storageService.uploadFile(file2));
         analysisService.save(analysis);
         ra.addFlashAttribute("successFlash", "User successfully saved");
         return searchController.search(model, fios[0], fios[1], fios[2]);
